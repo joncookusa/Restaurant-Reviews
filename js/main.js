@@ -87,6 +87,17 @@ initMap = () => {
   }).addTo(newMap);
 
   updateRestaurants();
+
+  // The tab order is getting lost on these map box items, most of which don't seem to be visible regardless. Either
+  // hide these elements or switch the tabindex to -1.
+  let mapBoxTextEl = document.getElementsByClassName('mapboxgl-ctrl-bottom-left');
+  mapBoxTextEl[0].setAttribute('style','display:none');
+  let mapBoxImproveEl = document.getElementsByClassName('mapboxgl-ctrl-attrib');
+  mapBoxImproveEl[0].setAttribute('style','display:none');
+  let mapBoxCanvasEl = document.getElementsByClassName('mapboxgl-canvas');
+  mapBoxCanvasEl[0].setAttribute('tabindex', -1);
+  let map = document.getElementById('map');
+  map.setAttribute('tabindex', -1);
 }
 /* window.initMap = () => {
   let loc = {

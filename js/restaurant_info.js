@@ -7,6 +7,8 @@ var newMap;
 document.addEventListener('DOMContentLoaded', (event) => {  
   initMap();
   resizeMapHeight();
+  let map = document.getElementById('map');
+  map.setAttribute('tabindex', -1);
 });
 
 window.addEventListener('resize', (event) => {
@@ -39,6 +41,11 @@ initMap = () => {
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'    
       }).addTo(newMap);
+
+      // Remove the tab index for the map. Previously appeared as lost focus
+      let map = document.getElementById('map');
+      map.setAttribute('tabindex', -1);
+
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
