@@ -135,9 +135,10 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  * Create all reviews HTML and add them to the webpage.
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
-  const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
+  const container = document.getElementById('reviews-container-detail');
+  const title = document.createElement('div');
   title.innerHTML = 'Reviews';
+  title.setAttribute('id','review-title');
   container.appendChild(title);
 
   if (!reviews) {
