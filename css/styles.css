@@ -208,7 +208,7 @@ nav h1 a {
   width: 100%;
   z-index: 1000;
 }
-#map-container {
+.inside #map-container {
   /*background: blue none repeat scroll 0 0;*/
   width: 50%;
 }
@@ -336,7 +336,7 @@ nav h1 a {
 }
 
 @media screen and (max-width: 800px) {
-    #restaurant-image-container, #restaurant-detail-container, #map-container, #reviews-container {
+    #restaurant-image-container, #restaurant-detail-container, .inside #map-container, #reviews-container {
         width: 100%;
     }
     #address-and-hours {
