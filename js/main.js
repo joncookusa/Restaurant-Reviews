@@ -99,22 +99,7 @@ initMap = () => {
   let map = document.getElementById('map');
   map.setAttribute('tabindex', -1);
 }
-/* window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
-  updateRestaurants();
-} */
 
-/**
- * Update page and map for current restaurants.
- */
 updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
@@ -177,6 +162,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = `${restaurant.name} restaurant`;
   restaurantItem.append(image);
 
   const name = document.createElement('h1');
@@ -193,6 +179,7 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+  more.setAttribute('aria-label',`${restaurant.name} ${more.innerHTML}`);
   more.href = DBHelper.urlForRestaurant(restaurant);
   restaurantItem.append(more);
 
