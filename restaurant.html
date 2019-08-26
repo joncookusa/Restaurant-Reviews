@@ -54,12 +54,14 @@
       <!-- end restaurant -->
       <!-- Beginning reviews -->
 
-      <section id="restaurant-detail-container">
+      <section id="restaurant-detail-container" tabindex="0" aria-label="Restaurant details">
         <div class="container-detail">
           <p id="restaurant-cuisine"></p>
           <div id="address-and-hours">
             <p id="restaurant-address"></p>
-            <table id="restaurant-hours"></table>
+            <div aria-label="Opening hours" tabindex="0">
+              <table id="restaurant-hours"></table>
+            </div>
           </div>
         </div>
       </section>

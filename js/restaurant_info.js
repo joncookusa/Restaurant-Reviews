@@ -87,6 +87,10 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
+  // Add a tabindex and lable for aria
+  address.tabIndex = 0;
+  address.setAttribute("aria-label", `Address. ${restaurant.address}`);
+
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
@@ -94,6 +98,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.setAttribute("aria-label", `Cuisine type ${restaurant.cuisine_type}`);
+  cuisine.tabIndex = 0;
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -111,12 +117,16 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   for (let key in operatingHours) {
     const row = document.createElement('tr');
 
-    const day = document.createElement('td');
+  const day = document.createElement('td');
     day.innerHTML = key;
     row.appendChild(day);
+    day.tabIndex = 0;
 
     const time = document.createElement('td');
     time.innerHTML = operatingHours[key];
+    time.setAttribute("aria-label", operatingHours[key].replace(' - ',' until '));
+    time.tabIndex = 0;
+
     row.appendChild(time);
 
     hours.appendChild(row);
@@ -130,12 +140,14 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container-detail');
   const title = document.createElement('div');
   title.innerHTML = 'Reviews';
+  title.tabIndex = 0;
   title.setAttribute('id','review-title');
   container.appendChild(title);
 
   if (!reviews) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
+    noReviews.tabIndex = 0;
     container.appendChild(noReviews);
     return;
   }
@@ -153,18 +165,23 @@ createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
   name.innerHTML = review.name;
+  name.tabIndex = 0;
+  name.setAttribute("aria-label",`Reviewers name ${review.name}`);
   li.appendChild(name);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
+  date.tabIndex = 0;
   li.appendChild(date);
 
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
+  rating.tabIndex = 0;
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.tabIndex = 0;
   li.appendChild(comments);
 
   return li;
