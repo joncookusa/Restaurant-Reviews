@@ -2,9 +2,9 @@
 
 let restaurants,
   neighborhoods,
-  cuisines
-var newMap
-var markers = []
+  cuisines;
+var newMap;
+var markers = [];
 
 registerServiceWorker = () => {
   if (!navigator.serviceWorker) return;
@@ -26,10 +26,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchCuisines();
 });
 
-document.getElementById('neighborhoods-select').addEventListener('click', () => {
-  console.log(self);
-});
-
 /**
  * Fetch all neighborhoods and set their HTML.
  */
@@ -42,7 +38,7 @@ fetchNeighborhoods = () => {
       fillNeighborhoodsHTML();
     }
   });
-}
+};
 
 /**
  * Set neighborhoods HTML.
@@ -69,7 +65,7 @@ fetchCuisines = () => {
       fillCuisinesHTML();
     }
   });
-}
+};
 
 /**
  * Set cuisines HTML.
@@ -83,7 +79,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     option.value = cuisine;
     select.append(option);
   });
-}
+};
 
 /**
  * Initialize leaflet map, called from HTML.
