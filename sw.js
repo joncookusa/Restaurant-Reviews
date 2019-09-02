@@ -1,6 +1,4 @@
-
-// Listen for fetch event and add fetched items to the cache
-self.addEventListener('fetch', (event) => {
+self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open('restaurant-static-v1').then((cache) => {
             return cache.addAll([
@@ -23,7 +21,11 @@ self.addEventListener('fetch', (event) => {
             ]);
         })
     );
+});
 
+
+// Listen for fetch event and add fetched items to the cache
+self.addEventListener('fetch', (event) => {
     // Check the cache first for any cached items before forwarding request to the network
     event.respondWith(
         caches.match(event.request).then((response) => {
@@ -32,5 +34,3 @@ self.addEventListener('fetch', (event) => {
         })
     );
 });
-
-
